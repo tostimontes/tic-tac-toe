@@ -1,55 +1,94 @@
-// 3 objects that fit all logic: 1. Players, 2. Gameboard, 3. Game
+// TODO: Create AI for player2
 
-// FACTORIES -> players
-// Wrap factories in IIFEs, for single instance objects -> gameboard, displayController
-
-// Separate STATE logic from UI controls
-
-// Create AI for player2
-
-// Create console game AND THEN create an object that handles UI display
-
-// LOGIC: each player has the ability to change the empty variables of the gameboard, which get assigned either X or O. After each round is played, the game checks if there's a winner, or whether the game is doomed to be a tie. After each W/L/T, the game should update the scoreboard, which should be part of the game logic and reset the gameboard variables. Score could also be first a players private variable which reflects in the game. First for the console game just console.log everything
-
-function gameLogic() {
+const game = (function () {
   return {
-    rounds: 0,
-    resetScoreboard: function () {},
+    round: 1,
+    resetScoreboard: function () {
+      this.round = 1;
+    },
     resetGameboard: function (arr) {
       for (let i = 0; i < arr.length; i++) {
         for (let j = 0; j < arr[i].length; j++) {
-          arr[i][j] = "";
+          arr[i][j] = undefined;
         }
       }
     },
+    checkWin: function(player) {
+      const arr = gameboard.grid;
+      const diagonal1 = [arr[0][0], arr[1][1], arr[2][2]];
+      const diagonal2 = [arr[2][0], arr[1][1], arr[0][2]];
+      const column0 = [arr[0][0], arr[1][0], arr[2][0]];
+      const column1 = [arr[0][1], arr[1][1], arr[2][1]];
+      const column2 = [arr[0][2], arr[1][2], arr[2][2]];
+      if (
+        arr[0][0] !== undefined &&
+          arr[0].every((tile) => tile === arr[0][0]) ||
+        arr[1][0] !== undefined &&
+          arr[1].every((tile) => tile === arr[1][0]) ||
+        arr[2][0] !== undefined &&
+          arr[2].every((tile) => tile === arr[2][0]) ||
+        column0[0] !== undefined && column0.every((tile) => tile === column0[0]) ||
+        column1[0] !== undefined && column1.every((tile) => tile === column1[0]) ||
+        column2[0] !== undefined && column2.every((tile) => tile === column2[0]) ||
+        diagonal1[0] !== undefined && diagonal1.every((tile) => tile === diagonal1[0]) ||
+        diagonal2[0] !== undefined && diagonal2.every((tile) => tile === diagonal2[0])
+      ) {
+        console.log(`${player.name} is the winner!`);
+        this.resetGameboard(arr);
+        this.round++;
+        player.score++;
+      } else if (arr.every(row => row.every(tile => tile !== undefined))) {
+        console.log("It's a tie!");
+      }
+    }
   };
-}
+})();
 
-function setGameboard() {
-  return [
-    [, ,],
-    [, ,],
-    [, ,],
-  ];
-}
+const gameboard = (function () {
+  return {
+    grid: [
+      [undefined, undefined, undefined],
+      [undefined, undefined, undefined],
+      [undefined, undefined, undefined],
+    ],
+  };
+})();
 
 function createPlayer(name, markerSelector) {
   return {
     name: name,
-    marker: markerSelector ? "X" : "O",
+    marker: markerSelector === "X" ? "X" : "O",
     score: 0,
     markTile: function (row, column) {
-      gameboard[row][column] === undefined
-        ? (gameboard[row][column] = this.marker)
+      gameboard.grid[row][column] === undefined
+        ? (gameboard.grid[row][column] = this.marker)
         : null;
-    },
-    winRound: function () {
-      console.log(`${this.name} won the round!`);
-      ++this.score;
+        game.checkWin(this);
     },
   };
 }
+
+function askForPlayerInfo() {
+  const name = prompt("Enter your name");
+  const marker = prompt("Enter your marker: X or O");
+  const markerSelector = marker === "X" ? "X": "O";
+  return createPlayer(name, markerSelector);
+}
+
 // PLAYGROUND
-const gameboard = setGameboard();
-const aitor = createPlayer("Aitor", true);
-const matxin = createPlayer("Matxin", false);
+// let player1 = askForPlayerInfo();
+// let player2 = askForPlayerInfo();
+let player1 = createPlayer("Aitor", "X");
+let player2 = createPlayer("Matxin", "O");
+console.log(player1);
+console.log(player2);
+player1.markTile(0,0);
+player2.markTile(0, 1);
+player1.markTile(0, 2);
+player2.markTile(1, 0);
+player1.markTile(2, 0);
+player2.markTile(2, 2);
+player1.markTile(1, 2);
+player2.markTile(1, 1);
+player1.markTile(2,1)
+console.log(gameboard.grid);
