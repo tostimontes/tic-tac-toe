@@ -1,16 +1,191 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 :root {
-    font-size: 62.5%;
+  font-size: 62.5%;
+}
+
+html {
+  height: 100%;
+  width: 100%;
 }
 
 body {
-    height: 100%;
-    width: 100%;
-    font-size: 1.6rem;
+  height: 100%;
+  width: 100%;
+  font-size: 1.6rem;
+  position: relative;
 }
 
+#player_dialog {
+  width: 35rem;
+  height: 35rem;
+  padding: 2rem;
+  background-color: blanchedalmond;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 12px ridge black;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  > form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 1.5rem;
+    & p {
+      font-size: 1.9rem;
+      font-weight: bold;
+    }
+    & input {
+      height: 4.5rem;
+      padding: 0.5rem;
+      font-weight: bold;
+      font-size: 1.8rem;
+      letter-spacing: 0.15rem;
+      background-color: rgba(165, 42, 42, 0.592);
+      color: wheat;
+    }
+    > #marker_selection {
+      display: flex;
+      gap: 7rem;
+      align-items: center;
+      height: 4rem;
+      > .marker_button {
+        height: 5rem;
+        width: 5rem;
+        border-radius: 0.5rem;
+        border: 0;
+        outline: none;
+        cursor: pointer;
+        box-shadow: 2px 2px 2px black;
+        font-weight: bold;
+        font-size: 3rem;
+      }
+      > #X {
+        background-color: red;
+        color: blanchedalmond;
+      }
+      > #O {
+        background-color: black;
+        color: blanchedalmond;
+      }
+    }
+    > #play_button {
+      background-color: brown;
+      outline: none;
+      border: 0;
+      border-radius: 0.5rem;
+      box-shadow: 2px 2px 2px black;
+      cursor: pointer;
+      > svg {
+        height: 6rem;
+        width: 6rem;
+        fill: blanchedalmond;
+      }
+    }
+  }
+}
+
+button {
+  transition: all 0.3s ease;
+  &:active {
+    transform: scale(0.9);
+  }
+}
+
+.main {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: min(60rem, 100%);
+  width: min(60rem, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+  border: 2px solid black;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  > h1 {
+    font-size: 5.4rem;
+    letter-spacing: 1rem;
+  }
+}
+
+#scoreboard {
+  height: min(8rem, 100%);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  > .score_display {
+    width: min(8rem, 100%);
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4.4rem;
+  }
+}
+
+#gameboardDisplay {
+  display: grid;
+  grid:
+    "a1 a2 a3" 1fr
+    "b1 b2 b3" 1fr
+    "c1 c2 c3" 1fr
+    / 1fr 1fr 1fr;
+  padding: 1rem;
+  gap: 0.6rem;
+  background-color: black;
+  height: min(45rem, 100%);
+  width: min(45rem, 100%);
+  border: 15px ridge wheat;
+  > #a1cell {
+    grid-area: a1;
+  }
+  > #b1cell {
+    grid-area: b1;
+  }
+
+  > #c1cell {
+    grid-area: c1;
+  }
+
+  > #a2cell {
+    grid-area: a2;
+  }
+
+  > #b2cell {
+    grid-area: b2;
+  }
+
+  > #c2cell {
+    grid-area: c2;
+  }
+
+  > #a3cell {
+    grid-area: a3;
+  }
+
+  > #b3cell {
+    grid-area: b3;
+  }
+
+  > #c3cell {
+    grid-area: c3;
+  }
+}
+
+.grid_cell {
+  background-color: wheat;
+}
+/* grid cells should have another color */
