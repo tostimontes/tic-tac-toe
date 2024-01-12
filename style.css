@@ -120,8 +120,7 @@ button {
   font-size: 10rem;
   z-index: 5;
   width: 5rem;
-  height: 5rem;  
-
+  height: 5rem;
 }
 
 .main {
@@ -183,43 +182,35 @@ button {
   height: min(45rem, 100%);
   width: min(45rem, 100%);
   border: 15px ridge wheat;
-  > #a1cell {
+  > #row0col0 {
     grid-area: a1;
   }
-  > #b1cell {
+  > #row0col1 {
     grid-area: b1;
   }
-
-  > #c1cell {
+  > #row0col2 {
     grid-area: c1;
   }
-
-  > #a2cell {
+  > #row1col0 {
     grid-area: a2;
   }
-
-  > #b2cell {
+  > #row1col1 {
     grid-area: b2;
   }
-
-  > #c2cell {
+  > #row1col2 {
     grid-area: c2;
   }
-
-  > #a3cell {
+  > #row2col0 {
     grid-area: a3;
   }
-
-  > #b3cell {
+  > #row2col1 {
     grid-area: b3;
   }
-
-  > #c3cell {
+  > #row2col2 {
     grid-area: c3;
   }
 }
 
-.grid_cell {
+.grid-cell {
   background-color: wheat;
 }
-/* grid cells should have another color */
