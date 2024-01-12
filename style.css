@@ -4,6 +4,16 @@
   box-sizing: border-box;
 }
 
+@keyframes scaleUpDown {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
 :root {
   font-size: 62.5%;
 }
@@ -21,6 +31,7 @@ body {
 }
 
 #player_dialog {
+  /* display: none; */
   width: 35rem;
   height: 35rem;
   padding: 2rem;
@@ -51,6 +62,7 @@ body {
       letter-spacing: 0.15rem;
       background-color: rgba(165, 42, 42, 0.592);
       color: wheat;
+      outline: none;
     }
     > #marker_selection {
       display: flex;
@@ -67,6 +79,10 @@ body {
         box-shadow: 2px 2px 2px black;
         font-weight: bold;
         font-size: 3rem;
+      }
+      > .selected_marker {
+        animation: scaleUpDown 1.5s infinite ease-in-out;
+        transform: scale(1.2);
       }
       > #X {
         background-color: red;
@@ -100,6 +116,14 @@ button {
   }
 }
 
+#penis {
+  font-size: 10rem;
+  z-index: 5;
+  width: 5rem;
+  height: 5rem;  
+
+}
+
 .main {
   position: absolute;
   top: 50%;
@@ -118,6 +142,16 @@ button {
     font-size: 5.4rem;
     letter-spacing: 1rem;
   }
+}
+
+#round_counter {
+  height: min(5rem, 100%);
+  width: 30%;
+  font-size: 4.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4.4rem;
 }
 
 #scoreboard {
