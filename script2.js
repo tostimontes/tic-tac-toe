@@ -91,15 +91,23 @@ const gameLogic = (function (gameboard) {
       (diagonal2[0] !== undefined &&
         diagonal2.every((tile) => tile === diagonal2[0]))
     ) {
-      alert(`${player.name} is the winner!`);
-      gameboard.resetGrid(arr);
+      gameUI.updateUI();
+      setTimeout(() => {
+        alert(`${player.name} is the winner!`);
+        gameboard.resetGrid(arr);
+        gameUI.updateUI();
+      }, 0);
       round++;
       newRound = true;
       player.score++;
       round % 2 === 0 ? (player1turn = false) : (player1turn = true);
     } else if (arr.every((row) => row.every((tile) => tile !== undefined))) {
-      alert("It's a tie!");
-      gameboard.resetGrid(arr);
+      gameUI.updateUI();
+      setTimeout(() => {
+        alert(`It's a tie!`);
+        gameboard.resetGrid(arr);
+        gameUI.updateUI();
+      }, 0);
       round++;
       newRound = true;
       round % 2 === 0 ? (player1turn = false) : (player1turn = true);
@@ -115,26 +123,18 @@ const gameLogic = (function (gameboard) {
         ? (currentPlayer = gameLogic.player1)
         : (currentPlayer = gameLogic.player2);
       gameboard.setMark(currentPlayer.marker, row, col);
+
       checkWin(currentPlayer);
       switchPlayer();
       gameUI.updateUI();
     }
   }
-  function getPlayer1() {
-    return player1;
-  }
-  function getPlayer2() {
-    return player2;
-  }
-
   return {
     player1,
     player2,
     playTurn,
     switchPlayer,
     getGameState,
-    getPlayer1,
-    getPlayer2,
     turnDisplay,
   };
 })(gameboard);
@@ -351,6 +351,7 @@ const gameUI = (function (gameboard, gameLogic) {
         xOption.addEventListener("click", uiElements.disableMarker);
         oOption.addEventListener("click", uiElements.disableMarker);
         nameInput.value = "";
+        nameInput.focus();
         chooseName2.style.display = "block";
         chooseName1.style.display = "none";
       } else {

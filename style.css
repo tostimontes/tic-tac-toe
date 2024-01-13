@@ -129,7 +129,7 @@ button {
   left: 50%;
   transform: translate(-50%, -50%);
   height: min(90rem, 100%);
-  width: min(90rem, 100%);
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -143,13 +143,14 @@ button {
 }
 
 #round_counter {
-  height: min(5rem, 100%);
+  height: min(10rem, 100%);
   width: 30%;
   font-size: 4.4rem;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 4.4rem;
+  text-align: center;
 }
 
 #scoreboard {
@@ -171,8 +172,18 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: min(16rem, 100%);
     font-size: 4.4rem;
+  }
+}
+
+@media (max-width: 500px) {
+  #scoreboard {
+    flex-direction: column;
+    height: fit-content;
+    align-items: center;
+  }
+  #round_counter {
+   align-items: center; 
   }
 }
 
@@ -194,25 +205,25 @@ button {
     grid-area: a1;
   }
   > #row0col1 {
-    grid-area: b1;
+    grid-area: a2;
   }
   > #row0col2 {
-    grid-area: c1;
+    grid-area: a3;
   }
   > #row1col0 {
-    grid-area: a2;
+    grid-area: b1;
   }
   > #row1col1 {
     grid-area: b2;
   }
   > #row1col2 {
-    grid-area: c2;
+    grid-area: b3;
   }
   > #row2col0 {
-    grid-area: a3;
+    grid-area: c1;
   }
   > #row2col1 {
-    grid-area: b3;
+    grid-area: c2;
   }
   > #row2col2 {
     grid-area: c3;
