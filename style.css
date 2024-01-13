@@ -128,14 +128,13 @@ button {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: min(60rem, 100%);
-  width: min(60rem, 100%);
+  height: min(90rem, 100%);
+  width: min(90rem, 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4rem;
-  border: 2px solid black;
+  gap: 2rem;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   > h1 {
     font-size: 5.4rem;
@@ -166,6 +165,14 @@ button {
     align-items: center;
     justify-content: center;
     font-size: 4.4rem;
+    color: wheat;
+  }
+  > .playerinfo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: min(16rem, 100%);
+    font-size: 4.4rem;
   }
 }
 
@@ -182,6 +189,7 @@ button {
   height: min(45rem, 100%);
   width: min(45rem, 100%);
   border: 15px ridge wheat;
+  font-size: 7.4rem;
   > #row0col0 {
     grid-area: a1;
   }
@@ -213,4 +221,16 @@ button {
 
 .grid-cell {
   background-color: wheat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#turn_display {
+  height: min(15rem, 100%);
+  width: 100%;
+  font-size: 3.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
