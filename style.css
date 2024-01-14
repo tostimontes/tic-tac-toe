@@ -191,9 +191,9 @@ button {
 #gameboardDisplay {
   display: grid;
   grid:
-    "a1 a2 a3" 1fr
-    "b1 b2 b3" 1fr
-    "c1 c2 c3" 1fr
+    "a1 a2 a3" minmax(8rem, 1fr)
+    "b1 b2 b3" minmax(8rem, 1fr)
+    "c1 c2 c3" minmax(8rem, 1fr)
     / 1fr 1fr 1fr;
   padding: 1rem;
   gap: 0.6rem;
